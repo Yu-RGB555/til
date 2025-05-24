@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.color-wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    /* =============================================================
+    conic-gradient：色相環をグラデーションで表現できる。
+    また、サイズに応じて自動的に調整されるため、レスポンシブデザインにも対応。
+    画像ではなく、CSSでのグラデーション描画なので、ページの読み込み速度も向上。
+    ============================================================= */
+    background: conic-gradient(
+        red, yellow, lime, cyan, blue, magenta, red
+    );
+    cursor: crosshair;
+    position: relative;
+}
+
+#color-info {
+    margin-top: 20px;
+    font-size: 1.2em;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色相環</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="color-wheel" class="color-wheel"></div>
+  <div id="color-info">
+    <p>H: <span id="hue">0</span> S: <span id="saturation">0</span> V: <span id="value">0</span></p>
+  </div>
+  <script>
+    const colorWheel = document.getElementById('color-wheel');
+    const hueDisplay = document.getElementById('hue');
+    const saturationDisplay = document.getElementById('saturation');
+    const valueDisplay = document.getElementById('value');
+
+    colorWheel.addEventListener('click', (event) => {
+      const rect = colorWheel.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+
+      const radius = Math.sqrt(x * x + y * y);
+      const angle = Math.atan2(y, x) * (180 / Math.PI) + 180;
+
+      const hue = Math.round(angle);
+      const saturation = Math.min(1, radius / (rect.width / 2)) * 100;
+      const value = 100; // 明度を100に固定
+
+      hueDisplay.textContent = hue;
+      saturationDisplay.textContent = Math.round(saturation);
+      valueDisplay.textContent = value;
+
+      console.log(`H: ${hue}, S: ${Math.round(saturation)}, V: ${value}`);
+    });
+  </script>
+</body>
